@@ -1,0 +1,26 @@
+[
+    {
+        "Id": 1,
+        "gender": "male",
+        "name": "John",
+        "contact": "+5252560150",
+        "address": "Dhaka",
+        "photoUrl": "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+    },
+    {
+        "Id": 2,
+        "gender": "male",
+        "name": "kaka",
+        "contact": "+5252565550",
+        "address": "Bhaka",
+        "photoUrl": "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+    },
+    {
+        "Id": 3,
+        "gender": "male",
+        "name": "loky",
+        "contact": "+5258865550",
+        "address": "Canada",
+        "photoUrl": "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+    }
+]
