@@ -14,7 +14,7 @@ app.use("/user", userRoute);
 
 
 app.get("/", (req, res) => {
-    res.send("Hello Buddy The surver is Running");
+    res.send("Hello Buddy The surver is Running vercel");
 });
 
 app.all("*", (req, res) => {
