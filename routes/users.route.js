@@ -5,8 +5,8 @@ const router = express.Router();
 router.get("/random", userControler.getRandomUser);
 router.get("/all", userControler.getAllUser);
 router.post("/save", userControler.saveOneUser);
-router.patch("/update", userControler.updateOneUser)
+router.patch("/update/:id", userControler.updateOneUser)
 router.patch("/bulk-update", userControler.updateMultipleUser)
-router.delete("/delete", userControler.deleteOneUser)
+router.delete("/delete/:id", userControler.deleteOneUser)
 
 module.exports = router;
