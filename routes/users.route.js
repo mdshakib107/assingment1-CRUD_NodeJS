@@ -6,7 +6,7 @@ router.get("/random", userControler.getRandomUser);
 router.get("/all", userControler.getAllUser);
 router.post("/save", userControler.saveOneUser);
 router.patch("/update/:id", userControler.updateOneUser)
-router.patch("/bulk-update", userControler.updateMultipleUser)
+router.put("/bulk-update", userControler.updateMultipleUser)
 router.delete("/delete/:id", userControler.deleteOneUser)
 
 module.exports = router;

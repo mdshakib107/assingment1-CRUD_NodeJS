@@ -28,9 +28,25 @@ module.exports.saveOneUser = (req, res, next) => {
         users.push(newUser);
         fs.writeFileSync(path.resolve(__dirname, '../users.json'), JSON.stringify(users));
 
-        res.send("Data Added Succes")
-    } else {
-        res.send("Plase!Give all the information")
+        res.send(newUser)
+    } else if (!gender) {
+        res.send("Plase!Give all the Gender")
+
+    }
+    else if (!name) {
+        res.send("Plase!Give all the name")
+
+    }
+    else if (!contact) {
+        res.send("Plase!Give all the contact")
+
+    }
+    else if (!address) {
+        res.send("Plase!Give all the address")
+
+    }
+    else if (!photoUrl) {
+        res.send("Plase!Give all the photoUrl")
 
     }
 };
@@ -40,29 +56,44 @@ module.exports.saveOneUser = (req, res, next) => {
 module.exports.updateOneUser = (req, res, next) => {
     const user = users.find((user) => user.Id === req.params.id);
 
-    user.Id = req.params.id;
-    user.gender = req.body.gender;
-    user.name = req.body.name;
-    user.contact = req.body.contact;
-    user.address = req.body.address;
-    user.photoUrl = req.body.photoUrl;
-    users.push(user);
+    user.gender = req.body.gender ? req.body.gender : user.gender;
+    user.name = req.body.name ? req.body.name : user.name;
+    user.contact = req.body.contact ? req.body.contact : user.contact;
+    user.address = req.body.address ? req.body.address : user.address;
+    user.photoUrl = req.body.photoUrl ? req.body.photoUrl : user.photoUrl;
     fs.writeFileSync(path.resolve(__dirname, '../users.json'), JSON.stringify(users));
 
-    res.send("Hitting the")
+    res.send(user)
 };
 
 
 
 module.exports.updateMultipleUser = (req, res, next) => {
-    res.send("Hitting the Multipe user Patch Route")
+    const user = users.map((user) => {
+        user.gender = req.body.gender ? req.body.gender : user.gender;
+        user.name = req.body.name ? req.body.name : user.name;
+        user.contact = req.body.contact ? req.body.contact : user.contact;
+        user.address = req.body.address ? req.body.address : user.address;
+        user.photoUrl = req.body.photoUrl ? req.body.photoUrl : user.photoUrl;
+    })
+    fs.writeFileSync(path.resolve(__dirname, '../users.json'), JSON.stringify(users));
+
+    res.send(users);
 };
 
 
 
 module.exports.deleteOneUser = (req, res, next) => {
+    const user = users.find((user) => user.Id === req.params.id);
+    console.log(user);
 
-    users = users.filter((user) => user.Id !== Number(req.params.id))
-    fs.writeFileSync(path.resolve(__dirname, '../users.json'), JSON.stringify(users));
-    res.send("Hitting the Delete One User Route")
+    if (user) {
+        restUsers = users.filter((user) => user.Id !== req.params.id);
+        fs.writeFileSync(path.resolve(__dirname, '../users.json'), JSON.stringify(restUsers));
+        res.send("Delete Succeed!!");
+    } else {
+        res.send("There Is No user with Providing ID")
+    }
+
+
 };
