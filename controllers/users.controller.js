@@ -56,14 +56,19 @@ module.exports.saveOneUser = (req, res, next) => {
 module.exports.updateOneUser = (req, res, next) => {
     const user = users.find((user) => user.Id === req.params.id);
 
-    user.gender = req.body.gender ? req.body.gender : user.gender;
-    user.name = req.body.name ? req.body.name : user.name;
-    user.contact = req.body.contact ? req.body.contact : user.contact;
-    user.address = req.body.address ? req.body.address : user.address;
-    user.photoUrl = req.body.photoUrl ? req.body.photoUrl : user.photoUrl;
-    fs.writeFileSync(path.resolve(__dirname, '../users.json'), JSON.stringify(users));
+    if (user) {
+        user.gender = req.body.gender ? req.body.gender : user.gender;
+        user.name = req.body.name ? req.body.name : user.name;
+        user.contact = req.body.contact ? req.body.contact : user.contact;
+        user.address = req.body.address ? req.body.address : user.address;
+        user.photoUrl = req.body.photoUrl ? req.body.photoUrl : user.photoUrl;
+        fs.writeFileSync(path.resolve(__dirname, '../users.json'), JSON.stringify(users));
+        res.send(user)
+    }
+    else {
+        res.send('User Not Found')
+    }
 
-    res.send(user)
 };
 
 
